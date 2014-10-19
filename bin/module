@@ -3,7 +3,7 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 
-$app = new Pingpong\ModulesCli\Application("Pingpong Modules CLI", "1.0.0");
+$app = new Pingpong\ModulesCli\Application;
 
 $app->registerCommands(new Illuminate\Container\Container);
 

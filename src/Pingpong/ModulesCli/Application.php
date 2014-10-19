@@ -6,6 +6,20 @@ use Pingpong\Modules\Module;
 class Application extends \Symfony\Component\Console\Application {
 
     /**
+     * The version of this app.
+     *
+     * @var string
+     */
+    const VERSION = '1.0-dev';
+
+    /**
+     * The name of this app.
+     *
+     * @var string
+     */
+    const NAME = 'Pingpong Modules CLI';
+
+    /**
      * @var Module
      */
     protected $module;
@@ -21,6 +35,14 @@ class Application extends \Symfony\Component\Console\Application {
         'GenerateModel',
         'GenerateFilter',
     ];
+
+    /**
+     * The constructor.
+     */
+    public function __construct()
+    {
+        parent::__construct(self::NAME, self::VERSION);
+    }
 
     /**
      * @return Module
