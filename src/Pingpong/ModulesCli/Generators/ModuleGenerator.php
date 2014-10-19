@@ -5,8 +5,11 @@ use Pingpong\ModulesCli\Exceptions\ModuleAlreadyExistException;
 use Pingpong\ModulesCli\Exceptions\ModulesPathNotDefinedException;
 use Pingpong\ModulesCli\Storage;
 use Pingpong\ModulesCli\Stub;
+use Pingpong\ModulesCli\Traits\NamesTrait;
 
 class ModuleGenerator extends Generator {
+
+    use NamesTrait;
 
     /**
      * @var string
@@ -20,7 +23,6 @@ class ModuleGenerator extends Generator {
 
     /**
      * @param $name
-     * @throws ModulesPathNotDefinedException
      */
     public function __construct($name)
     {
@@ -29,11 +31,6 @@ class ModuleGenerator extends Generator {
         $this->name = $name;
 
         $this->storage = Storage::getInstance();
-
-        if ( ! $this->storage->path())
-        {
-            throw new ModulesPathNotDefinedException("Modules path is not defined");
-        }
     }
 
     /**
@@ -46,55 +43,32 @@ class ModuleGenerator extends Generator {
     }
 
     /**
-     * @param string $name
-     * @return $this
+     * @return array
      */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * @return string
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
-
-    /**
-     * @return string
-     */
-    public function getLowerName()
-    {
-        return strtoupper($this->name);
-    }
-
-    /**
-     * @return string
-     */
-    public function getStudlyName()
-    {
-        return Str::studly($this->name);
-    }
-
     protected function getFolders()
     {
         return array_values($this->storage->generator);
     }
 
+    /**
+     * @param $path
+     */
     protected function createGitKeep($path)
     {
         $this->filesystem->put($path . '/.gitkeep', new Stub('blank'));
     }
 
+    /**
+     * @return bool
+     */
     protected function exists()
     {
         return $this->filesystem->isDirectory($this->getModulePath());
     }
 
+    /**
+     * @throws ModuleAlreadyExistException
+     */
     public function generate()
     {
         if ($this->exists())
@@ -115,12 +89,12 @@ class ModuleGenerator extends Generator {
     }
 
     /**
-     * @param null $path
+     * @param string|null $path
      * @return string
      */
     protected function getModulePath($path = null)
     {
-        return $this->storage->path() . '/' . $this->getStudlyName() . ($path ? '/' . $path : '');
+        return $this->storage->getModulePath($this->getStudlyName(), $path);
     }
 
 }

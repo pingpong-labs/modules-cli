@@ -16,7 +16,8 @@ class Application extends \Symfony\Component\Console\Application {
     protected $consoles = [
         'New',
         'Use',
-        'Setup'
+        'Setup',
+        'GenerateController',
     ];
 
     /**

@@ -2,6 +2,7 @@
 
 use Illuminate\Filesystem\Filesystem;
 use Illuminate\Support\Contracts\ArrayableInterface;
+use Pingpong\ModulesCli\Exceptions\ModulesPathNotDefinedException;
 use stdClass;
 
 class Storage implements ArrayableInterface {
@@ -133,12 +134,29 @@ class Storage implements ArrayableInterface {
 
     /**
      * Get realpath of modules.
-     * 
-     * @return string|bool 
+     *
+     * @return string|bool
      */
     public function path()
     {
         return realpath($this->get('path'));
+    }
+
+    /**
+     * @param $name
+     * @param null $path
+     * @throws ModulesPathNotDefinedException
+     * @return string
+     */
+    public function getModulePath($name, $path = null)
+    {
+        if ( ! $modulesPath = $this->path())
+        {
+
+            throw new ModulesPathNotDefinedException;
+        }
+
+        return $modulesPath . '/' . $name . ($path ? '/' . $path : '');
     }
 
     /**
