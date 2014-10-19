@@ -38,6 +38,7 @@ class Application extends \Symfony\Component\Console\Application {
         'GenerateMigration',
         'GenerateSeed',
         'GenerateRequest',
+        'GenerateCommand',
     ];
 
     /**
