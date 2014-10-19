@@ -8,13 +8,13 @@ trait GenerateFileTrait {
      * Generate a new file.
      *
      * @throws FileAlreadyExistException
-     * @return void
+     * @return bool
      */
     public function generateFile()
     {
         try
         {
-            $this->filesystem->put($this->getDestinationFilePath(), $this->getTemplateContents());
+            return $this->filesystem->put($this->getDestinationFilePath(), $this->getTemplateContents());
         }
         catch (\Exception $e)
         {

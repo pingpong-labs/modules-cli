@@ -6,38 +6,57 @@ use Pingpong\ModulesCli\Stub;
 use Pingpong\ModulesCli\Traits\GenerateFileTrait;
 use Pingpong\ModulesCli\Traits\NamesTrait;
 
-class ModelGenerator extends Generator implements FileGeneratorInterface {
+abstract class FileGenerator extends Generator implements FileGeneratorInterface {
 
-    use NamesTrait, GenerateFileTrait;
+    use GenerateFileTrait, NamesTrait;
 
     /**
-     * @var
+     * @var string
      */
     protected $name;
 
     /**
      * @var string
      */
-    private $model;
+    protected $type = '';
 
     /**
-     * @param $name
-     * @param $model
+     * @var string
      */
-    public function __construct($name, $model)
-    {
-        parent::__construct();
+    protected $stub = '';
 
-        $this->name = $name;
-        $this->model = $model;
+    /**
+     * Get stub replacements.
+     *
+     * @return array
+     */
+    abstract public function getStubReplacements();
+
+    /**
+     * Get filename.
+     *
+     * @return string
+     */
+    public function getFilename()
+    {
+        return $this->getClassName() . '.php';
     }
 
     /**
-     * Generate a model.
+     * Get class name.
+     *
+     * @return string
+     */
+    abstract protected function getClassName();
+
+    /**
+     * Generate the file.
+     *
+     * @return bool
      */
     public function generate()
     {
-        $this->generateFile();
+        return $this->generateFile();
     }
 
     /**
@@ -47,10 +66,7 @@ class ModelGenerator extends Generator implements FileGeneratorInterface {
      */
     public function getTemplateContents()
     {
-        return new Stub('model', [
-            'MODEL_NAME' => $this->getClassName(),
-            'MODULE_NAME' => $this->getStudlyName()
-        ]);
+        return new Stub($this->stub, array_merge(['MODULE_NAME' => $this->getStudlyName()], $this->getStubReplacements()));
     }
 
     /**
@@ -66,30 +82,14 @@ class ModelGenerator extends Generator implements FileGeneratorInterface {
     }
 
     /**
+     * Get extra path.
+     *
      * @param $storage
      * @return string
      */
     protected function getExtraPath($storage)
     {
-        return $storage->generator['model'] . DIRECTORY_SEPARATOR . $this->getFilename();
-    }
-
-    /**
-     * @return string
-     */
-    public function getClassName()
-    {
-        return $this->getStudlyName($this->model);
-    }
-
-    /**
-     * Get filename.
-     *
-     * @return string
-     */
-    public function getFilename()
-    {
-        return $this->getClassName() . '.php';
+        return $storage->generator[$this->type] . DIRECTORY_SEPARATOR . $this->getFilename();
     }
 
 }

@@ -19,6 +19,7 @@ class Application extends \Symfony\Component\Console\Application {
         'Setup',
         'GenerateController',
         'GenerateModel',
+        'GenerateFilter',
     ];
 
     /**
