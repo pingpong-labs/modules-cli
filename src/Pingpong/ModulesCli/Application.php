@@ -35,6 +35,7 @@ class Application extends \Symfony\Component\Console\Application {
         'GenerateModel',
         'GenerateFilter',
         'GenerateProvider',
+        'GenerateMigration',
     ];
 
     /**
