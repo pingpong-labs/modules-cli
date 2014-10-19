@@ -1,21 +1,21 @@
 <?php namespace Pingpong\ModulesCli\Generators;
 
-class ModelGenerator extends FileGenerator {
+class ProviderGenerator extends FileGenerator {
 
     /**
      * @var string
      */
-    protected $model;
+    protected $provider;
 
     /**
      * @var string
      */
-    protected $type = 'model';
+    protected $type = 'provider';
 
     /**
      * @var string
      */
-    protected $stub = 'model';
+    protected $stub = 'provider';
 
     /**
      * @param $name
@@ -26,7 +26,7 @@ class ModelGenerator extends FileGenerator {
         parent::__construct();
 
         $this->name = $name;
-        $this->model = $provider;
+        $this->provider = $provider;
     }
 
     /**
@@ -34,7 +34,7 @@ class ModelGenerator extends FileGenerator {
      */
     public function getClassName()
     {
-        return $this->getStudlyName($this->model);
+        return $this->getStudlyName($this->provider);
     }
 
     /**
@@ -45,7 +45,7 @@ class ModelGenerator extends FileGenerator {
     public function getStubReplacements()
     {
         return [
-            'MODEL_NAME' => $this->getClassName(),
+            'CLASS_NAME' => $this->getClassName(),
         ];
     }
 
