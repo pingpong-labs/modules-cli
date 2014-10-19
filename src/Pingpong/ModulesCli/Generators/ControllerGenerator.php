@@ -36,9 +36,7 @@ class ControllerGenerator extends FileGenerator {
      */
     public function getStubReplacements()
     {
-        return [
-            'CONTROLLER_NAME' => $this->getClassName()
-        ];
+        return [];
     }
 
     /**
