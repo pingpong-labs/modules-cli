@@ -21,5 +21,8 @@
             "Pingpong\\ModulesCli": "src/"
         }
     },
+    "bin": [
+        "bin/module"
+    ],
     "minimum-stability": "stable"
 }
