@@ -1,25 +1,21 @@
 <?php namespace Pingpong\ModulesCli\Generators;
 
-use Pingpong\ModulesCli\Contracts\FileGeneratorInterface;
-use Pingpong\ModulesCli\Exceptions\FileAlreadyExistException;
-use Pingpong\ModulesCli\Storage;
-use Pingpong\ModulesCli\Stub;
-use Pingpong\ModulesCli\Traits\GenerateFileTrait;
-use Pingpong\ModulesCli\Traits\NamesTrait;
-
-class ControllerGenerator extends Generator implements FileGeneratorInterface {
-
-    use NamesTrait, GenerateFileTrait;
-
-    /**
-     * @var string
-     */
-    protected $name;
+class ControllerGenerator extends FileGenerator {
 
     /**
      * @var string
      */
     protected $controller;
+
+    /**
+     * @var string
+     */
+    protected $type = 'controller';
+
+    /**
+     * @var string
+     */
+    protected $stub = 'controller';
 
     /**
      * @param $name
@@ -34,63 +30,24 @@ class ControllerGenerator extends Generator implements FileGeneratorInterface {
     }
 
     /**
-     * @throws FileAlreadyExistException
+     * Get stub replacements.
+     *
+     * @return array
      */
-    public function generate()
+    public function getStubReplacements()
     {
-        $this->generateFile();
+        return [
+            'CONTROLLER_NAME' => $this->getClassName()
+        ];
     }
 
     /**
-     * Get template contents.
+     * Get class name.
      *
      * @return string
      */
-    public function getTemplateContents()
-    {
-        return new Stub('controller', [
-            'MODULE_NAME' => $this->getStudlyName(),
-            'CONTROLLER_NAME' => $this->getControllerName()
-        ]);
-    }
-
-    /**
-     * Get destination file path.
-     *
-     * @return string
-     */
-    public function getDestinationFilePath()
-    {
-        $storage = Storage::getInstance();
-
-        return $storage->getModulePath($this->getStudlyName(), $this->getExtraPath($storage));
-    }
-
-    /**
-     * @param $storage
-     * @return string
-     */
-    protected function getExtraPath($storage)
-    {
-        return $storage->generator['controller'] . DIRECTORY_SEPARATOR . $this->getFilename();
-    }
-
-    /**
-     * @return string
-     */
-    private function getControllerName()
+    protected function getClassName()
     {
         return $this->getStudlyName($this->controller);
     }
-
-    /**
-     * Get filename.
-     *
-     * @return string
-     */
-    public function getFilename()
-    {
-        return $this->getControllerName() . '.php';
-    }
-
 }
