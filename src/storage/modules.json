@@ -1,5 +1,5 @@
 {
-    "used": "admin",
+    "used": "",
     "generator": {
         "assets": "Assets",
         "config": "Config",
@@ -16,5 +16,5 @@
         "views": "Resources\/views",
         "test": "Tests"
     },
-    "path": "D:\\Pingpong-Labs\\Code\\packages\\Modules"
+    "path": ""
 }
