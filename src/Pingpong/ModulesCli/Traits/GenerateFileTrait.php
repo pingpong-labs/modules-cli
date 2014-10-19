@@ -12,13 +12,29 @@ trait GenerateFileTrait {
      */
     public function generateFile()
     {
-        try
+        $path = $this->getDestinationFilePath();
+
+        if($this->filesystem->exists($path))
         {
-            return $this->filesystem->put($this->getDestinationFilePath(), $this->getTemplateContents());
+            throw new FileAlreadyExistException("File already exist : {$path}");
         }
-        catch (\Exception $e)
+
+        $this->autoCreateDirectory($path);
+
+        return $this->filesystem->put($path, $this->getTemplateContents());
+    }
+
+    /**
+     * Auto create directory.
+     * 
+     * @param  string $path 
+     * @return void       
+     */
+    protected function autoCreateDirectory($path)
+    {
+        if( ! is_dir($dir = dirname($path)))
         {
-            throw new FileAlreadyExistException($e->getMessage());
+            $this->filesystem->makeDirectory($dir);
         }
     }
 
