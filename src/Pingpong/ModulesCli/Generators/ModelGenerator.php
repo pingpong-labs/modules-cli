@@ -1,40 +1,39 @@
 <?php namespace Pingpong\ModulesCli\Generators;
 
 use Pingpong\ModulesCli\Contracts\FileGeneratorInterface;
-use Pingpong\ModulesCli\Exceptions\FileAlreadyExistException;
 use Pingpong\ModulesCli\Storage;
 use Pingpong\ModulesCli\Stub;
 use Pingpong\ModulesCli\Traits\GenerateFileTrait;
 use Pingpong\ModulesCli\Traits\NamesTrait;
 
-class ControllerGenerator extends Generator implements FileGeneratorInterface {
+class ModelGenerator extends Generator implements FileGeneratorInterface {
 
     use NamesTrait, GenerateFileTrait;
 
     /**
-     * @var string
+     * @var
      */
     protected $name;
 
     /**
      * @var string
      */
-    protected $controller;
+    private $model;
 
     /**
      * @param $name
-     * @param $controller
+     * @param $model
      */
-    public function __construct($name, $controller)
+    public function __construct($name, $model)
     {
         parent::__construct();
 
         $this->name = $name;
-        $this->controller = $controller;
+        $this->model = $model;
     }
 
     /**
-     * @throws FileAlreadyExistException
+     * Generate a model.
      */
     public function generate()
     {
@@ -48,9 +47,9 @@ class ControllerGenerator extends Generator implements FileGeneratorInterface {
      */
     public function getTemplateContents()
     {
-        return new Stub('controller', [
-            'MODULE_NAME' => $this->getStudlyName(),
-            'CONTROLLER_NAME' => $this->getControllerName()
+        return new Stub('model', [
+            'MODEL_NAME' => $this->getClassName(),
+            'MODULE_NAME' => $this->getStudlyName()
         ]);
     }
 
@@ -65,22 +64,21 @@ class ControllerGenerator extends Generator implements FileGeneratorInterface {
 
         return $storage->getModulePath($this->getStudlyName(), $this->getExtraPath($storage));
     }
-
     /**
      * @param $storage
      * @return string
      */
     protected function getExtraPath($storage)
     {
-        return $storage->generator['controller'] . DIRECTORY_SEPARATOR . $this->getFilename();
+        return $storage->generator['model'] . DIRECTORY_SEPARATOR . $this->getFilename();
     }
 
     /**
      * @return string
      */
-    private function getControllerName()
+    public function getClassName()
     {
-        return $this->getStudlyName($this->controller);
+        return $this->getStudlyName($this->model);
     }
 
     /**
@@ -90,7 +88,7 @@ class ControllerGenerator extends Generator implements FileGeneratorInterface {
      */
     public function getFilename()
     {
-        return $this->getControllerName() . '.php';
+        return $this->getClassName() . '.php';
     }
 
 }

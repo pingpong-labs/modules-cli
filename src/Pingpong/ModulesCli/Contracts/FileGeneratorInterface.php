@@ -23,4 +23,11 @@ interface FileGeneratorInterface {
      */
     public function generateFile();
 
+    /**
+     * Get filename.
+     *
+     * @return string
+     */
+    public function getFilename();
+
 } 

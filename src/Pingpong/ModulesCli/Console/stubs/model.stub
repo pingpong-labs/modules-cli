@@ -1,0 +1,9 @@
+<?php namespace Modules\$MODULE_NAME$\Entities;
+   
+use Illuminate\Database\Eloquent\Model;
+
+class $MODEL_NAME$ extends Model {
+
+    protected $fillable = [];
+
+}

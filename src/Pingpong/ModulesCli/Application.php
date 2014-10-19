@@ -18,6 +18,7 @@ class Application extends \Symfony\Component\Console\Application {
         'Use',
         'Setup',
         'GenerateController',
+        'GenerateModel',
     ];
 
     /**
