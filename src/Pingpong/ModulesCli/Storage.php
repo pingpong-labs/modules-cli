@@ -160,6 +160,16 @@ class Storage implements ArrayableInterface {
     }
 
     /**
+     * @param $module
+     * @return bool
+     * @throws ModulesPathNotDefinedException
+     */
+    public function has($module)
+    {
+        return is_dir($this->getModulePath($module));
+    }
+
+    /**
      * @param $key
      * @return mixed
      */

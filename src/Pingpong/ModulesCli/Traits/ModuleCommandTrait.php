@@ -21,7 +21,14 @@ trait ModuleCommandTrait {
             throw new \Exception("No module used yet.");
         }
 
-        return Str::studly($overwrite ?: $module);
+        $module = Str::studly($overwrite ?: $module);
+
+        if ( ! $storage->has($module))
+        {
+            throw new \Exception("Module [{$module}] does not exist.");
+        }
+
+        return $module;
     }
 
 } 
