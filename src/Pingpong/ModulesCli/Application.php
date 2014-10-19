@@ -37,6 +37,7 @@ class Application extends \Symfony\Component\Console\Application {
         'GenerateProvider',
         'GenerateMigration',
         'GenerateSeed',
+        'GenerateRequest',
     ];
 
     /**
