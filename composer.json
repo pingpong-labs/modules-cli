@@ -2,6 +2,7 @@
     "name": "pingpong/modules-cli",
     "description": "A console for pingpong/modules",
     "keywords": ["pingpong", "modules", "modules-cli", "cli", "console"],
+    "license": "BSD-3-Clause",
     "authors": [
         {
             "name": "Pingpong Labs",
@@ -10,10 +11,10 @@
     ],
     "require": {
         "php": ">=5.4.0",
-        "illuminate/console": "4.2.*",
-        "illuminate/container": "4.2.*",
-        "pingpong/modules": "~1",
-        "illuminate/support": "4.2.*"
+        "illuminate/console": "~4|~5",
+        "illuminate/container": "~4|~5",
+        "illuminate/support": "~4|~5",
+        "pingpong/modules": "~1"
     },
     "autoload": {
         "psr-0": {
