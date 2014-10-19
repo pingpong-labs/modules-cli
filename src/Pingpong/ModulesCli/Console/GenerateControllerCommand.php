@@ -22,7 +22,7 @@ class GenerateControllerCommand extends Command {
 	 *
 	 * @var string
 	 */
-	protected $description = 'Generate a new controller for the specified module.';
+	protected $description = 'Generate a new controller';
 
 	/**
 	 * Create a new command instance.
