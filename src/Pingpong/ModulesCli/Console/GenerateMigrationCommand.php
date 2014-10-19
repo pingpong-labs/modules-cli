@@ -55,10 +55,10 @@ class GenerateMigrationCommand extends Command {
      */
     protected function getArguments()
     {
-        return array(
-            array('migration', InputArgument::REQUIRED, 'The migration name.'),
-            array('module', InputArgument::OPTIONAL, 'The name of module will used.'),
-        );
+        return [
+            ['migration', InputArgument::REQUIRED, 'The migration name.'],
+            ['module', InputArgument::OPTIONAL, 'The name of module will used.'],
+        ];
     }
 
     /**
@@ -68,11 +68,11 @@ class GenerateMigrationCommand extends Command {
      */
     protected function getOptions()
     {
-        return array(
-            array('fields', null, InputOption::VALUE_OPTIONAL, 'The migration fields.', null),
-            array('plain', null, InputOption::VALUE_NONE, 'Create plain migration.'),
-            array('dump',null,InputOption::VALUE_NONE,'Run \'artisan dump-autoload\' after the migration created.'),
-        );
+        return [
+            ['fields', null, InputOption::VALUE_OPTIONAL, 'The migration fields.', null],
+            ['plain', null, InputOption::VALUE_NONE, 'Create plain migration.'],
+            ['dump', null, InputOption::VALUE_NONE, 'Run \'artisan dump-autoload\' after the migration created.'],
+        ];
     }
 
 }

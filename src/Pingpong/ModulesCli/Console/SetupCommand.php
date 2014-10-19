@@ -48,9 +48,9 @@ class SetupCommand extends Command {
      */
     protected function getArguments()
     {
-        return array(
-            array('path', InputArgument::REQUIRED, 'The path of modules want to use.'),
-        );
+        return [
+            ['path', InputArgument::REQUIRED, 'The path of modules want to use.'],
+        ];
     }
 
 }

@@ -32,8 +32,8 @@ class InstallCommand extends Command {
      */
     protected function getArguments()
     {
-        return array(
-            array('module', InputArgument::REQUIRED, 'The name of module want to install.'),
-        );
+        return [
+            ['module', InputArgument::REQUIRED, 'The name of module want to install.'],
+        ];
     }
 }

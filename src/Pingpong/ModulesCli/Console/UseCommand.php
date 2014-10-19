@@ -40,9 +40,9 @@ class UseCommand extends Command {
      */
     protected function getArguments()
     {
-        return array(
-            array('module', InputArgument::REQUIRED, 'The name of module want to use.'),
-        );
+        return [
+            ['module', InputArgument::REQUIRED, 'The name of module want to use.'],
+        ];
     }
 
 }

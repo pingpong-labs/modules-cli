@@ -45,10 +45,10 @@ class GenerateControllerCommand extends Command {
 	 */
 	protected function getArguments()
 	{
-		return array(
-			array('controller', InputArgument::REQUIRED, 'Controller name.'),
-			array('module', InputArgument::OPTIONAL, 'The name of module will used.'),
-		);
+		return [
+			['controller', InputArgument::REQUIRED, 'Controller name.'],
+			['module', InputArgument::OPTIONAL, 'The name of module will used.'],
+		];
 	}
 
 	/**
@@ -58,9 +58,9 @@ class GenerateControllerCommand extends Command {
 	 */
 	protected function getOptions()
 	{
-		return array(
+		return [
 //			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
+		];
 	}
 
 }

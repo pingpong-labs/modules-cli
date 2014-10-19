@@ -45,10 +45,10 @@ class GenerateFilterCommand extends Command {
 	 */
 	protected function getArguments()
 	{
-		return array(
-            array('model', InputArgument::REQUIRED, 'Model name.'),
-            array('module', InputArgument::OPTIONAL, 'The name of module will used.'),
-		);
+		return [
+            ['model', InputArgument::REQUIRED, 'Model name.'],
+            ['module', InputArgument::OPTIONAL, 'The name of module will used.'],
+		];
 	}
 
 	/**
@@ -58,9 +58,9 @@ class GenerateFilterCommand extends Command {
 	 */
 	protected function getOptions()
 	{
-		return array(
+		return [
 //			array('example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null),
-		);
+		];
 	}
 
 }
