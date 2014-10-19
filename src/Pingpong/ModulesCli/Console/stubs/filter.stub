@@ -1,6 +1,6 @@
 <?php namespace Modules\$MODULE_NAME$\Http\Middlewares;
 
-class $FILTER_NAME$ {
+class $CLASS_NAME$ {
 
 	public function filter()
 	{

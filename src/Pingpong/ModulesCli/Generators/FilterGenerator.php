@@ -38,7 +38,7 @@ class FilterGenerator extends FileGenerator {
      */
     public function getStubReplacements()
     {
-        return ['FILTER_NAME' => $this->getClassName()];
+        return [];
     }
 
     /**

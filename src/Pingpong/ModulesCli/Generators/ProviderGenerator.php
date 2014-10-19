@@ -44,9 +44,7 @@ class ProviderGenerator extends FileGenerator {
      */
     public function getStubReplacements()
     {
-        return [
-            'CLASS_NAME' => $this->getClassName(),
-        ];
+        return [];
     }
 
 }

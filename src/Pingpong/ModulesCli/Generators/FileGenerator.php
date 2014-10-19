@@ -66,7 +66,12 @@ abstract class FileGenerator extends Generator implements FileGeneratorInterface
      */
     public function getTemplateContents()
     {
-        return new Stub($this->stub, array_merge(['MODULE_NAME' => $this->getStudlyName()], $this->getStubReplacements()));
+        $defaults = [
+            'MODULE_NAME' => $this->getStudlyName(),
+            'CLASS_NAME' => $this->getClassName()
+        ];
+
+        return new Stub($this->stub, array_merge($defaults, $this->getStubReplacements()));
     }
 
     /**

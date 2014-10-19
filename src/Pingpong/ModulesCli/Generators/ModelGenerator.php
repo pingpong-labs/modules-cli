@@ -44,9 +44,7 @@ class ModelGenerator extends FileGenerator {
      */
     public function getStubReplacements()
     {
-        return [
-            'MODEL_NAME' => $this->getClassName(),
-        ];
+        return [];
     }
 
 }

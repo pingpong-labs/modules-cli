@@ -2,7 +2,7 @@
    
 use Illuminate\Database\Eloquent\Model;
 
-class $MODEL_NAME$ extends Model {
+class $CLASS_NAME$ extends Model {
 
     protected $fillable = [];
 
