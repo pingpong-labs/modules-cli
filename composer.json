@@ -1,0 +1,24 @@
+{
+    "name": "pingpong/modules-cli",
+    "description": "A console for pingpong/modules",
+    "keywords": ["pingpong", "modules", "modules-cli", "cli", "console"],
+    "authors": [
+        {
+            "name": "Pingpong Labs",
+            "email": "pingpong.labs@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/console": "4.2.*",
+        "illuminate/container": "4.2.*",
+        "pingpong/modules": "~1",
+        "illuminate/support": "4.2.*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Pingpong\\ModulesCli": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
