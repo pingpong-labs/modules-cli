@@ -132,6 +132,16 @@ class Storage implements ArrayableInterface {
     }
 
     /**
+     * Get realpath of modules.
+     * 
+     * @return string|bool 
+     */
+    public function path()
+    {
+        return realpath($this->get('path'));
+    }
+
+    /**
      * @param $key
      * @return mixed
      */

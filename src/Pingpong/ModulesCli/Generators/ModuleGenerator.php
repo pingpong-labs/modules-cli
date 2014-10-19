@@ -1,7 +1,10 @@
 <?php namespace Pingpong\ModulesCli\Generators;
 
 use Illuminate\Support\Str;
+use Pingpong\ModulesCli\Exceptions\ModuleAlreadyExistException;
+use Pingpong\ModulesCli\Exceptions\ModulesPathNotDefinedException;
 use Pingpong\ModulesCli\Storage;
+use Pingpong\ModulesCli\Stub;
 
 class ModuleGenerator extends Generator {
 
@@ -17,6 +20,7 @@ class ModuleGenerator extends Generator {
 
     /**
      * @param $name
+     * @throws ModulesPathNotDefinedException
      */
     public function __construct($name)
     {
@@ -26,9 +30,9 @@ class ModuleGenerator extends Generator {
 
         $this->storage = Storage::getInstance();
 
-        if (is_null($this->storage->path))
+        if ( ! $this->storage->path())
         {
-            throw new \RuntimeException("Modules path is not defined");
+            throw new ModulesPathNotDefinedException("Modules path is not defined");
         }
     }
 
@@ -76,9 +80,47 @@ class ModuleGenerator extends Generator {
         return Str::studly($this->name);
     }
 
+    protected function getFolders()
+    {
+        return array_values($this->storage->generator);
+    }
+
+    protected function createGitKeep($path)
+    {
+        $this->filesystem->put($path . '/.gitkeep', new Stub('blank'));
+    }
+
+    protected function exists()
+    {
+        return $this->filesystem->isDirectory($this->getModulePath());
+    }
+
     public function generate()
     {
-        var_dump($this->name);
+        if ($this->exists())
+        {
+            $message = "Module [{$this->getStudlyName()}] already exist";
+
+            throw new ModuleAlreadyExistException($message);
+        }
+
+        foreach ($this->getFolders() as $folder)
+        {
+            $path = $this->getModulePath($folder);
+
+            $this->filesystem->makeDirectory($path, 0775, true);
+
+            $this->createGitKeep($path);
+        }
+    }
+
+    /**
+     * @param null $path
+     * @return string
+     */
+    protected function getModulePath($path = null)
+    {
+        return $this->storage->path() . '/' . $this->getStudlyName() . ($path ? '/' . $path : '');
     }
 
 }

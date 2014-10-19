@@ -1,4 +1,20 @@
 {
-    "path": "D:\\Pingpong-Labs\\Code\\packages\\Modules",
-    "used": "admin"
+    "used": "admin",
+    "generator": {
+        "assets": "Assets",
+        "config": "Config",
+        "command": "Console",
+        "migration": "Database\/Migrations",
+        "model": "Entities",
+        "repository": "Database\/Repositories",
+        "seeder": "Database\/Seeders",
+        "controller": "Http\/Controllers",
+        "filter": "Http\/Middlewares",
+        "request": "Http\/Requests",
+        "provider": "Providers",
+        "lang": "Resources\/lang",
+        "views": "Resources\/views",
+        "test": "Tests"
+    },
+    "path": "D:\\Pingpong-Labs\\Code\\packages\\Modules"
 }
