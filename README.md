@@ -1,4 +1,4 @@
-modules-cli
+Modules CLI
 ===========
 
-A console for speed up pingpong/modules package
+Coming Soon
