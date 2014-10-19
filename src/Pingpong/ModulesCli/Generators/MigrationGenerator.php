@@ -1,8 +1,8 @@
 <?php namespace Pingpong\ModulesCli\Generators;
 
-use Pingpong\Modules\Exceptions\InvalidMigrationName;
-use Pingpong\Modules\Schema\Field;
-use Pingpong\Modules\Schema\Parser;
+use Pingpong\ModulesCli\Exceptions\InvalidMigrationNameException;
+use Pingpong\ModulesCli\Schema\Field;
+use Pingpong\ModulesCli\Schema\Parser;
 use Pingpong\ModulesCli\Stub;
 
 class MigrationGenerator extends FileGenerator {
@@ -114,7 +114,7 @@ class MigrationGenerator extends FileGenerator {
             ]);
         }
 
-        throw new InvalidMigrationName;
+        throw new InvalidMigrationNameException;
     }
 
     /**
