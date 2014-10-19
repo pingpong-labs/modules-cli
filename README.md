@@ -1,15 +1,17 @@
 Modules CLI Generators
 ===========
 
+This package is part of [pingpong/modules](https://github.com/pingpong-labs/modules) package.
+
 ### Installation
 
-Install globally using composer.
-```
+Install globally.
+```shell
 composer global require "pingpong/modules-cli:dev-master"
 ```
 
 Install locally for laravel project.
-```
+```shell
 composer require "pingpong/modules-cli:dev-master"
 ```
 
@@ -27,9 +29,9 @@ Locally:
 vendor/bin/module
 ```
 
-You may create alias for quick access the `module` cli, or export the bin path to your `~/bashrc` file.
+You may create alias for quick access the `module` cli, or export the bin path to your `~/.bashrc` file.
 
-```
+```shell
 alias module="vendor/bin/module"
 
 export PATH="vendor/bin:$PATH"
@@ -40,7 +42,7 @@ export PATH="vendor/bin:$PATH"
 There is some command you can use for generating a module, module's controller or others.
 You may also show all available command using `module list` command.
 
-```
+```shell
 $ module list
 Pingpong Modules CLI version 1.0-dev
 
