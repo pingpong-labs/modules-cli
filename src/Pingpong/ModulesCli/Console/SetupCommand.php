@@ -23,21 +23,6 @@ class SetupCommand extends Command {
     protected $description = 'Setup modules path';
 
     /**
-     * @var Storage
-     */
-    protected $storage;
-
-    /**
-     * Create a new command instance.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->storage = Storage::getInstance();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
@@ -51,7 +36,7 @@ class SetupCommand extends Command {
             mkdir($path);
         }
 
-        $this->storage->set('path', $path);
+        Storage::getInstance()->set('path', $path);
 
         $this->info("Modules path setup successfully");
     }

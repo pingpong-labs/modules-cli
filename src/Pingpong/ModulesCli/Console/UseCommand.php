@@ -22,28 +22,13 @@ class UseCommand extends Command {
     protected $description = 'Use the specified module for cli session';
 
     /**
-     * @var Storage
-     */
-    protected $storage;
-
-    /**
-     * Create a new command instance.
-     */
-    public function __construct()
-    {
-        parent::__construct();
-
-        $this->storage = Storage::getInstance();
-    }
-
-    /**
      * Execute the console command.
      *
      * @return mixed
      */
     public function fire()
     {
-        $this->storage->set('used', $module = $this->argument('module'));
+        Storage::getInstance()->set('used', $module = $this->argument('module'));
 
         $this->info("Module [{$module}] used successfully");
     }
